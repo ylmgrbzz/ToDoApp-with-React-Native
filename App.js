@@ -8,6 +8,7 @@ import {
   TextInput,
   Button,
   TouchableOpacity,
+  FlatList,
 } from "react-native";
 import { appStyles as styles } from "./styles";
 
@@ -20,8 +21,32 @@ export default function App() {
   const handleAddTask = () => {
     console.log("Added task");
     setTasks([...tasks, text]);
+    setText("");
   };
 
+  const handleDeleteTask = (index) => {
+    const newTasks = [...tasks];
+    newTasks.splice(index, 1);
+    setTasks(newTasks);
+  };
+
+  // const handleDeleteTask = (index) => {
+  //   const newTasks = [...tasks];
+  //   newTasks.splice(index, 1);
+  //   setTasks(newTasks);
+  // };
+
+  // const renderItem = ({ item, index }) => (
+  //   <View style={styles.taskItem}>
+  //     <Text style={styles.taskText}>{item}</Text>
+  //     <TouchableOpacity
+  //       style={styles.deleteButton}
+  //       onPress={() => handleDeleteTask(index)}
+  //     >
+  //       <Text style={styles.deleteText}>Delete</Text>
+  //     </TouchableOpacity>
+  //   </View>
+  // );
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <StatusBar style="dark" />
@@ -34,13 +59,33 @@ export default function App() {
           style={styles.input}
           value={text}
           placeholder="Enter your task here"
-          onChangeText={(text) => setText(text)}
+          onChangeText={setText}
         />
         <TouchableOpacity style={styles.buttonContainer}>
           <Text style={styles.buttonText} onPress={handleAddTask}>
             Add Task{" "}
           </Text>
         </TouchableOpacity>
+        <View style={styles.divider}>
+          <FlatList
+            data={tasks}
+            renderItem={({ item, index }) => (
+              <View style={styles.taskContainer}>
+                <Text style={styles.taskText}>{item}</Text>
+                <TouchableOpacity
+                  style={styles.taskDelete}
+                  onPress={() => handleDeleteTask(index)}
+                >
+                  <Text style={styles.taskDeleteText}>X</Text>
+                </TouchableOpacity>
+              </View>
+            )}
+            keyExtractor={(item) => item + Date.now() + Math.random()}
+          />
+          {/* {tasks.map((task) => (
+            <Text>{task}</Text>
+          ))} */}
+        </View>
       </View>
     </SafeAreaView>
   );
