@@ -1,20 +1,18 @@
+import React from "react";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, SafeAreaView } from "react-native";
+import { appStyles as styles } from "./styles";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to starts working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView style={{ flex: 1 }}>
+      <View style={styles.container}>
+        <Text>My Tasks</Text>
+        <Text>
+          Enter your tasks in the text box below and press the Add button to add{" "}
+        </Text>
+        <StatusBar style="dark" />
+      </View>
+    </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
