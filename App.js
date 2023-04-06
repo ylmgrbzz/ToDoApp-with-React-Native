@@ -22,7 +22,7 @@ export default function App() {
         </Text>
         <TextInput style={styles.input} placeholder="Enter your task here" />
         <TouchableOpacity style={styles.buttonContainer}>
-          <Text style={styles.buttonText}>Add</Text>
+          <Text style={styles.buttonText}>Add Task </Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
