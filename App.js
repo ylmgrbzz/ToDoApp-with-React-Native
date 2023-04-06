@@ -13,6 +13,14 @@ import { appStyles as styles } from "./styles";
 
 export default function App() {
   const [text, setText] = useState();
+  console.log(text);
+  const [tasks, setTasks] = useState([]);
+  console.log(tasks);
+
+  const handleAddTask = () => {
+    console.log("Added task");
+    setTasks([...tasks, text]);
+  };
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -24,11 +32,14 @@ export default function App() {
         </Text>
         <TextInput
           style={styles.input}
+          value={text}
           placeholder="Enter your task here"
           onChangeText={(text) => setText(text)}
         />
         <TouchableOpacity style={styles.buttonContainer}>
-          <Text style={styles.buttonText}>Add Task </Text>
+          <Text style={styles.buttonText} onPress={handleAddTask}>
+            Add Task{" "}
+          </Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
