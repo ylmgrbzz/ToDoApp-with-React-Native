@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
@@ -12,6 +12,8 @@ import {
 import { appStyles as styles } from "./styles";
 
 export default function App() {
+  const [text, setText] = useState();
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <StatusBar style="dark" />
@@ -20,7 +22,11 @@ export default function App() {
         <Text style={styles.subtitle}>
           Enter your tasks in the text box below and press the Add button to add{" "}
         </Text>
-        <TextInput style={styles.input} placeholder="Enter your task here" />
+        <TextInput
+          style={styles.input}
+          placeholder="Enter your task here"
+          onChangeText={(text) => setText(text)}
+        />
         <TouchableOpacity style={styles.buttonContainer}>
           <Text style={styles.buttonText}>Add Task </Text>
         </TouchableOpacity>
